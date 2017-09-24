@@ -16,6 +16,19 @@ class App extends React.Component {
   search (term) {
     console.log(`${term} was searched`);
     // TODO
+    $.ajax({
+      url: '/repos',
+      type: 'POST',
+      data: JSON.stringify({term}),
+      crossDomain: true,
+      contentType: 'application/json',
+      success: function (data) {
+        console.log('GitHub Fetcher: Username sent', data);
+      },
+      error: function (data) {
+        console.error('GitHub Fetcher: Failed to send message', data);
+      }
+    });
   }
 
   render () {
